@@ -1,27 +1,57 @@
-import React, { useContext } from "react";
-import { Select } from "@chakra-ui/react";
-import { GameContext } from "../../App";
+import React, { useContext, useState } from "react";
+import {
+  Button,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+  Select,
+} from "@chakra-ui/react";
+import { useGames } from "../../hooks/useGames";
+import { useTheme } from "../../hooks/useTheme";
+import { ChevronDownIcon } from "@chakra-ui/icons";
+
+const platforms = ["Pc", "Xbox", "Playstation", "Mac", "Android"];
+let selectedPlatform = "";
 
 const PlatformFilter = () => {
-
-  const {onChangePlatform} = useContext(GameContext);
+  const { setPlatform } = useGames();
+  const { lightMode } = useTheme();
 
   return (
-    <Select
-      display="inline-block"
-      maxW="max-content"
-      backgroundColor="#eaeaea"
-      size="md"
-      me="5"
-      onChange={(e) => onChangePlatform(e.target.value)}
-    >
-      <option disabled selected>Platforms</option>
-      <option value="pc">Pc</option>
-      <option value="xbox">Xbox</option>
-      <option value="playstation">Playstation</option>
-      <option value="mac">Ios</option>
-      <option value="android">Android</option>
-    </Select>
+    <Menu>
+      <MenuButton
+        color={lightMode ? "black" : "#e9e9e9"}
+        bg={lightMode ? "#eaeaea" : "#202020"}
+        _hover={{ bg: lightMode ? "gray.200" : "#303030" }}
+        _expanded={{ bg: lightMode ? "gray.400" : "#414141" }}
+        as={Button}
+        rightIcon={<ChevronDownIcon />}
+        mb={{ base: "5", sm: "0" }}
+        me={{ sm: "5" }}
+      >
+        {selectedPlatform != "" ? selectedPlatform : "Platforms"}
+      </MenuButton>
+      <MenuList
+        bg={lightMode ? "#eaeaea" : "#202020"}
+        borderColor={lightMode && "gray"}
+      >
+        {platforms.map((ele, index) => (
+          <MenuItem
+            key={index}
+            onClick={() => {
+              selectedPlatform = ele;
+              setPlatform(ele.toLowerCase());
+            }}
+            _hover={{ bg: lightMode ? "gray.400" : "#414141" }}
+            bg={lightMode ? "#eaeaea" : "#202020"}
+            color={lightMode ? "black" : "#e9e9e9"}
+          >
+            {ele}
+          </MenuItem>
+        ))}
+      </MenuList>
+    </Menu>
   );
 };
 

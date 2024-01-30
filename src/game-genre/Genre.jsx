@@ -1,4 +1,4 @@
-import { Box, Heading } from '@chakra-ui/react'
+import { Box, Flex, Heading } from '@chakra-ui/react'
 // import GenreCard from './components/GenreCard';
 import adventure from '../assets/img/genre/adventure.jpg';
 import action from '../assets/img/genre/action.jpg';
@@ -7,31 +7,33 @@ import shooter from '../assets/img/genre/shooter.jpg';
 import indie from '../assets/img/genre/indie.jpg';
 import CardElement from './components/CardElement';
 import axiosGame from '../services/api-games';
-import { memo, useContext, useEffect, useRef, useState } from 'react';
-import { useGameContext } from '../contexts/GameContext';
-import { GameContext } from '../App';
+import { useContext, useEffect, useRef, useState } from 'react';
+import { useGames } from '../hooks/useGames';
+import { useTheme } from '../hooks/useTheme';
 
-const gameGenre = ["Adventure", "Action", "Shooter", "Rpg", "Indie"];
-const images = [adventure, action, shooter, rpg, indie];
+const gameGenre = ["Adventure", "Action", "Shooter", "Indie"];
+const images = [adventure, action, shooter, indie];
 
 const Genre = () => {
 
-  const{fetchGenre} = useContext(GameContext);
+  // const{setGenre} = useContext(GameContext);
+  const {setGenre} = useGames();
+  const {lightMode} = useTheme();
   const [isActive, setIsActive] = useState(0);
 
-  const handleClick = (title, key)=>{
-    fetchGenre(title);
+  const handleClick = (genre, key)=>{
+    setGenre(genre);
     setIsActive(key);
   }
 
   return (
     <aside>
-      <Heading as="h2" size="xl" mb="5">Genres</Heading>
-      <Box>
-          {gameGenre.map((text, index) => <CardElement akey={index + 1} isActive={isActive} onClick={handleClick} text={text} imageSrc={images[index]}/>)}
-      </Box>
+      <Heading as="h2" size={{base: "lg", md:"lg", lg:"xl"}} mb="5"  color={lightMode ? null : "#e9e9e9"}>Genres</Heading>
+      <Flex mb={{base:"5", sm:"0"}} align={{base:"center", sm:"flex-start"}} justifyContent="space-between" flexDirection={{md:"column"}}>
+          {gameGenre.map((text, index) => <CardElement key={index} akey={index + 1} isActive={isActive} onClick={handleClick} text={text} imageSrc={images[index]}/>)}
+      </Flex>
     </aside>
   )
 }
 
-export default memo(Genre)
+export default Genre
