@@ -1,7 +1,7 @@
 import React from "react";
-import { Button, Menu, MenuButton, MenuItem, MenuList, Select } from "@chakra-ui/react";
-import { useGames } from "../../hooks/useGames";
-import { useTheme } from "../../hooks/useTheme";
+import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
+import { useGames } from "../../contexts/gamesContext";
+import { useTheme } from "../../contexts/themeContext";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 
 const arrangeBy = ['Name', 'Average rate', 'Release date', 'Popularity'];

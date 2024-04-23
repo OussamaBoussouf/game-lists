@@ -7,8 +7,8 @@ import {
   MenuList,
   Select,
 } from "@chakra-ui/react";
-import { useGames } from "../../hooks/useGames";
-import { useTheme } from "../../hooks/useTheme";
+import { useGames } from "../../contexts/gamesContext";
+import { useTheme } from "../../contexts/themeContext";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 
 const platforms = ["Pc", "Xbox", "Playstation", "Mac", "Android"];

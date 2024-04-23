@@ -20,9 +20,8 @@ import Genre from "./game-genre/Genre";
 import Games from "./game-list/Games";
 import { createContext, useContext, useEffect, useState } from "react";
 import axiosGame from "./services/api-games";
-import { GamesProvider } from "./hooks/useGames";
-import { ThemeProvider } from "./hooks/useTheme";
-
+import { GamesProvider } from "./contexts/gamesContext";
+import { ThemeProvider } from "./contexts/themeContext";
 
 function App() {
   return (
