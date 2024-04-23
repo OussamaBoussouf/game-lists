@@ -1,0 +1,7 @@
+.game-card{
+    transition: scale 500ms;
+}
+
+.game-card:hover{
+    scale: 1.05;
+}

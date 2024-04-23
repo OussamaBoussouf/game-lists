@@ -1,7 +1,7 @@
-import { Button, Flex, Image, Link } from '@chakra-ui/react'
-import { memo, useEffect, useState } from 'react'
+import {Flex, Image, Link } from '@chakra-ui/react'
+import { memo } from 'react'
 import "./CardElement.css"
-import { useTheme } from '../../hooks/useTheme';
+import { useTheme } from '../../contexts/themeContext';
 
 const CardElement = ({isActive ,akey ,imageSrc, text, onClick}) => {
 

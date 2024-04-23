@@ -2,14 +2,12 @@ import SearchBar from "./components/SearchBar";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 import {
   Flex,
-  Container,
   Switch,
   Text,
   Box,
-  Image,
   Link,
 } from "@chakra-ui/react";
-import { useTheme } from "../hooks/useTheme";
+import { useTheme } from "../contexts/themeContext";
 
 const Navbar = () => {
   

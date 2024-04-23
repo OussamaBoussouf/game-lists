@@ -1,12 +1,9 @@
-import { useContext, useEffect, useState } from "react";
-import axiosGames, { CanceledError } from "../services/api-games";
-import { Text, Heading, Grid, Box, Flex } from "@chakra-ui/react";
+import { Text, Heading, Flex } from "@chakra-ui/react";
 import PlatformFilter from "./components/PlatformFilter";
 import OrderBy from "./components/OrderBy";
 import { GameList } from "./components/GameList";
-import CardSkeleton from "./components/CardSkeleton";
-import { useGames } from "../hooks/useGames";
-import { useTheme } from "../hooks/useTheme";
+import { useGames } from "../contexts/gamesContext";
+import { useTheme } from "../contexts/themeContext";
 
 const Games = () => {
   const { games, genre, search } = useGames();
@@ -27,11 +24,11 @@ const Games = () => {
         <OrderBy />
       </Flex>
       {games.length === 0 && search !== "" ? (
-        <Text fontSize="2xl" my="5">
+        <Text fontSize="2xl" my="5" color={lightMode ? null : "#e9e9e9"}>
           No Result...
         </Text>
       ) : (
-        <GameList games={games} />
+        <GameList />
       )}
     </>
   );
